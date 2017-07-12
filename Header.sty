@@ -1,0 +1,40 @@
+%-------------------------------------------------------------------------------
+% RLResume header definition
+%-------------------------------------------------------------------------------
+\NeedsTeXFormat{LaTeX2e}
+\ProvidesPackage{Header}[2017/07/12 v1.0.0 Riley Labrecque's Resume Header]
+
+\renewcommand*{\namefont}{\fontsize{46}{56}\mdseries\upshape}
+\renewcommand*{\namestyle}[1]{{\namefont\textcolor{color2}{#1}}}
+
+\renewcommand*{\makecvhead}{%
+	\@initializebox{\makecvheaddetailsbox}%
+	\def\socialsdetails{}%
+	\collectionloop{socials}{% the key holds the social type (=symbol command prefix), the item holds the link
+		\protected@edef\socialsdetails{\socialsdetails\protect\makenewline\csname\collectionloopkey socialsymbol\endcsname\collectionloopitem}%
+	}%
+
+    \savebox{\makecvheaddetailsbox}{%
+        \begin{tabular}[b]{@{}r@{}}%
+            \ifthenelse{\isundefined{\@phone}}{}{\makenewline\mobilephonesymbol\emaillink{\@phone}}%
+            \ifthenelse{\isundefined{\@email}}{}{\makenewline\emailsymbol\emaillink{\@email}}%
+            \ifthenelse{\isundefined{\@homepage}}{}{\makenewline\homepagesymbol\httplink{\@homepage}}%
+            \socialsdetails%
+        \end{tabular}%
+    }%
+    
+	\@initializelength{\makecvheaddetailswidth}\settowidth{\makecvheaddetailswidth}{\usebox{\makecvheaddetailsbox}}%
+
+	\@initializebox{\makecvheadnamebox}%
+	\savebox{\makecvheadnamebox}{%
+	\begin{minipage}[b]{\textwidth-\makecvheaddetailswidth}%
+		\namestyle{\@name}%
+		\end{minipage}%
+	}%
+
+
+	\usebox{\makecvheadnamebox}%
+    \usebox{\makecvheaddetailsbox}%
+}
+
+\endinput
