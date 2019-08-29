@@ -49,13 +49,13 @@
   \par\nobreak\addvspace{1ex}\@afterheading}% to avoid a pagebreak after the heading
 
 \RenewDocumentCommand{\subsection}{sm}{%
-  \par\addvspace{1ex}%
+  \par\addvspace{.1em}%
   \phantomsection{}% reset the anchor for hyperrefs
   \addcontentsline{toc}{subsection}{#2}%
   \cvitem[0ex]{}{\strut\subsectionstyle{#2}}%
-  \par\nobreak\addvspace{.5ex}\@afterheading}% to avoid a pagebreak after the heading
+  \par\nobreak\addvspace{.1em}\@afterheading}% to avoid a pagebreak after the heading
 
-\renewcommand*{\cvitem}[3][.25em]{%
+\renewcommand*{\cvitem}[3][.1em]{%
   \begin{tabular}{@{}p{\hintscolumnwidth}@{\hspace{\separatorcolumnwidth}}p{\maincolumnwidth}@{}}%
     \raggedleft\hintstyle{#2} &{#3}%
   \end{tabular}%
